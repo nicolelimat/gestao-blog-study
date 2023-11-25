@@ -13,6 +13,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -56,4 +58,24 @@ public class UserServiceTest {
     }
 
     // TODO: Implement test cases for getAllUsers
+    @Test 
+    @DisplayName("#getAllUsers > When the list is not empty > Return a list of users")
+    void getAllUsersWhenTheListIsNotEmptyReturnAListOfUsers() {
+        List<User> allUsers = new ArrayList<>();
+        allUsers.add(User.builder().id(0).name("Nicole").username("nicolelima").build());
+        allUsers.add(User.builder().id(1).name("Taylor Swift").username("taylorswift13").build());
+        allUsers.add(User.builder().id(2).name("Charmosa").username("charmosa_cat").build());
+        allUsers.add(User.builder().id(3).name("Gatão").username("gatao_cat").build());
+
+        when(service.getAllUsers()).thenReturn(allUsers);
+        List<User> response = service.getAllUsers();
+        assertAll(
+                () -> assertEquals(4,response.size()),
+                () -> assertEquals(0,response.get(0).getId()),
+                () -> assertEquals("Taylor Swift",response.get(1).getName()),
+                () -> assertEquals("Charmosa",response.get(2).getName()),
+                () -> assertEquals("gatao_cat",response.get(3).getUsername())
+        );
+
+    }
 }
