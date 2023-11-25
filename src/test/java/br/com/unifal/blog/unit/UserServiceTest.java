@@ -57,8 +57,7 @@ public class UserServiceTest {
         assertThrows(UserNotFoundException.class, () -> service.findById(2));
     }
 
-    // TODO: Implement test cases for getAllUsers
-    @Test 
+    @Test
     @DisplayName("#getAllUsers > When the list is not empty > Return a list of users")
     void getAllUsersWhenTheListIsNotEmptyReturnAListOfUsers() {
         List<User> allUsers = new ArrayList<>();
@@ -76,6 +75,5 @@ public class UserServiceTest {
                 () -> assertEquals("Charmosa",response.get(2).getName()),
                 () -> assertEquals("gatao_cat",response.get(3).getUsername())
         );
-
     }
 }
